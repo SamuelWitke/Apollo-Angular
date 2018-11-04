@@ -1,0 +1,21 @@
+<div *ngIf="posts | async as posts; else loading">
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let post of posts">
+      {{post.title}} by
+      <p *ngIf="post.user; else notDef">
+        {{post.user.name}}
+      </p>
+      <ng-template #notDef>
+        <p>
+          No User Name
+        </p>
+      </ng-template>
+      {{post.createdAt}}
+    </li>
+  </ul>
+</div>
+<ng-template #loading>
+  <div class="jumbotron">
+    <h1 class="display-4">Loading ...</h1>
+  </div>
+</ng-template>
